@@ -1,3 +1,8 @@
-import test from './components/test';
+import m from 'mithril'
 
-alert('hellooooooooo');
+import Wines from './components/wines'
+
+m.mount(document.querySelector('main'), Wines);
+
+
+

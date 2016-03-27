@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clean": "rm -fr dist/",
     "jade": "jade -o dist/ src/index.jade",
     "jadew": "jade -w -o dist/ src/index.jade",
     "sass": "node-sass src/index.sass dist/index.css",
