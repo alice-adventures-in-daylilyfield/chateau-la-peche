@@ -1,0 +1,22 @@
+{
+  "name": "chateau-la-peche",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daylilyfield/chateau-la-peche.git"
+  },
+  "keywords": [
+    "wine"
+  ],
+  "author": "daylilyfield",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daylilyfield/chateau-la-peche/issues"
+  },
+  "homepage": "https://github.com/daylilyfield/chateau-la-peche#readme"
+}
