@@ -1,8 +1,14 @@
-import m from 'mithril'
+import m from 'mithril';
 
-import Wines from './components/wines'
+import Wines from './components/wines';
+import NewWineEtiquette from './components/new-wine-etiquette';
 
-m.mount(document.querySelector('main'), Wines);
+m.route.mode = 'hash';
+
+m.route(document.querySelector('main'), '/', {
+  '/': Wines,
+  '/wines/new/etiquette': NewWineEtiquette
+});
 
 
 
