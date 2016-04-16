@@ -1,14 +1,20 @@
-import m from 'mithril';
+import React from 'react';
+import {render} from 'react-dom';
+import {Router, Route, Link, IndexRoute, browserHistory} from 'react-router';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
+import Main from './components/main';
 import Wines from './components/wines';
-import NewWineEtiquette from './components/new-wine-etiquette';
 
-m.route.mode = 'hash';
+injectTapEventPlugin();
 
-m.route(document.querySelector('main'), '/', {
-  '/': Wines,
-  '/wines/new/etiquette': NewWineEtiquette
-});
+const routes =
+  <Router history={browserHistory}>
+    <Route path="/" component={Main}>
+      <IndexRoute component={Wines} />
+    </Route>
+  </Router>
 
+render(routes, document.querySelector('main'));
 
 

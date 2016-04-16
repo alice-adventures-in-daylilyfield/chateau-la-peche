@@ -1,15 +1,9 @@
-import m from 'mithril';
-import {materialize} from './mdls';
+import React from 'react';
+import GridList from 'material-ui/lib/grid-list/grid-list';
+import GridTile from 'material-ui/lib/grid-list/grid-tile';
+import StarBorder from 'material-ui/lib/svg-icons/toggle/star-border';
+import IconButton from 'material-ui/lib/icon-button';
 
-
-const FAB_CLASS = [
-  'mdl-button',
-  'mdl-js-button',
-  'mdl-button--fab',
-  'mdl-js-ripple-effect',
-  'mdl-button--colored',
-  'mdl-shadow--8dp'
-].join('.');
 
 const dummies = Array.apply(null, {length: 10}).map((_, i) => ({
   name: 'chateau hau brion',
@@ -23,35 +17,41 @@ const dummies = Array.apply(null, {length: 10}).map((_, i) => ({
   createdAt: ''
 }));
 
-const onNewWineClicked = () => m.route('/wines/new/etiquette');
+const styles = {
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+  },
+  gridList: {
+    width: 500,
+    overflowY: 'auto',
+    marginBottom: 24,
+  },
+  titleColor: {
+    red: 'rgba(168, 0, 47, 0.6)',
+    white: 'rgba(222, 176, 55, 0.6)',
+    rose: 'rgba(255, 40, 25, 0.6)'
+  }
+};
 
-const controller = () => ({
-  wines: m.prop(dummies),
-  onNewWineClicked: onNewWineClicked
-});
+export default class Wines extends React.Component {
 
-const view = (ctrl) =>
-  m('.Wines', [
-    m('.mdl-grid', ctrl.wines().map((wine) =>
-      m('.Wines__wineCard.mdl-card.mdl-cell.mdl-cell--2-col.mdl-shadow--2dp', [
-        m('.Wines__wineCard__etiquette.mdl-card__media', [
-          m('img', {src: wine.etiquettePath})
-        ]),
-        m('.Wines__wineCard__names', {
-          class: `Wines__wineCard__names--${wine.kind}`
-        }, [
-          m('.Wines__wineCard__name.mdl-typography--title', [wine.name, wine.vintage].join(' '))
-          //m('.Wines__wineCard__nameJpn.mdl-typography--subhead', wine.nameJpn)
-        ])
-      ])
-    )),
-    m(`.Wines__newWine.${FAB_CLASS}`, {
-      onclick: ctrl.onNewWineClicked,
-      config: materialize
-    }, [
-      m('i.material-icons', 'add') 
-    ])
-  ]);
-
-module.exports = {controller, view};
+  render() {
+    return (
+      <div className="Wines" style={styles.root}>
+        <GridList cellHeight={200} style={styles.gridList}>
+          {dummies.map((wine) => (
+            <GridTile
+              title={`${wine.name} ${wine.vintage}`}
+              subtitle={wine.nameJpn}
+              titleBackground={styles.titleColor[wine.kind]}>
+              <img src={wine.etiquettePath} />
+            </GridTile>
+          ))}
+        </GridList>
+      </div>
+    );
+  }
+}
 
